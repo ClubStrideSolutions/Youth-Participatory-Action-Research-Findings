@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vallejo Youth Health Initiative: YPAR Research Findings</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color-dark: #0a1128;
+            --primary-color-light: #ffffff;
+            --accent-color: #2c57fa;
+            --second-accent: #fa962c;
+            --text-color: #ffffff;
+            --background-color: #0a1128;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --border-radius: 8px;
+        }
+
+        /* ---------- Reset ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ---------- Base ---------- */
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* ---------- Layout ---------- */
+        .container {
+            max-width: 1200px;
+            margin-inline: auto;
+            padding: 20px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            background-color: var(--primary-color-dark);
+            border: 1px solid var(--accent-color);
+            color: var(--primary-color-light);
+            padding: 2.5rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 0.5rem;
+        }
+
+        header h2 {
+            font-weight: 500;
+            font-size: 24px;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .date-box {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color-light);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+
+        /* ---------- Navigation ---------- */
+        nav {
+            background-color: var(--primary-color-dark);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--primary-color-light);
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Sections ---------- */
+        section {
+            background-color: var(--primary-color-dark);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-weight: 500;
+            color: var(--accent-color);
+            font-size: 32px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .subsection-title {
+            font-weight: 500;
+            color: var(--second-accent);
+            font-size: 24px;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--second-accent);
+        }
+
+        /* ---------- Cards ---------- */
+        .system-card {
+            background-color: rgba(44, 87, 250, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .system-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .system-card h3 {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 24px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .finding-card {
+            background-color: rgba(250, 150, 44, 0.1);
+            border: 1px solid var(--second-accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .finding-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .finding-card h4 {
+            font-weight: 500;
+            color: var(--second-accent);
+            margin-bottom: 1rem;
+            font-size: 20px;
+            border-bottom: 2px solid var(--second-accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .finding-card ul, .system-card ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .finding-card li, .system-card li {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color-light);
+            font-size: 16px;
+        }
+
+        /* ---------- Study Guide Elements ---------- */
+        .key-terms {
+            background-color: rgba(44, 87, 250, 0.15);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .key-terms h4 {
+            color: var(--accent-color);
+            font-size: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .key-terms dl dt {
+            font-weight: 600;
+            color: var(--second-accent);
+            margin-top: 1rem;
+        }
+
+        .key-terms dl dd {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .reflection-box {
+            background-color: rgba(250, 150, 44, 0.15);
+            border: 1px dashed var(--second-accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .reflection-box h4 {
+            color: var(--second-accent);
+            font-size: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .discussion-questions {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .discussion-questions h4 {
+            color: var(--primary-color-light);
+            font-size: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .discussion-questions ol {
+            padding-left: 1.5rem;
+        }
+
+        .discussion-questions li {
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- Highlights & Quotes ---------- */
+        .highlight {
+            background-color: rgba(250, 150, 44, 0.1);
+            border-left: 4px solid var(--second-accent);
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight h4 {
+            font-weight: 500;
+            font-size: 20px;
+            margin-top: 0;
+            color: var(--second-accent);
+        }
+
+        .quote {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--second-accent);
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        /* ---------- Activity Cards ---------- */
+        .activity-card {
+            background-color: rgba(44, 87, 250, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-card h4 {
+            color: var(--accent-color);
+            font-size: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color-dark);
+            border: 1px solid var(--accent-color);
+            color: var(--primary-color-light);
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        /* ----- Callout Box ----- */
+        .callout {
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            background-color: rgba(44, 87, 250, 0.1);
+            position: relative;
+        }
+
+        .callout::before {
+            content: "✓";
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .callout h4 {
+            margin-top: 0.5rem;
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+        }
+
+        /* ----- Executive Summary ----- */
+        .executive-summary {
+            background-color: rgba(44, 87, 250, 0.15);
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .executive-summary h3 {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ----- Data Visualization ----- */
+        .data-viz {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .data-viz h4 {
+            color: var(--primary-color-light);
+            font-size: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* ----- Methodology Section ----- */
+        .methodology {
+            background-color: rgba(44, 87, 250, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .methodology h3 {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ----- Recommendation Card ----- */
+        .recommendation-card {
+            background-color: rgba(250, 150, 44, 0.1);
+            border: 1px solid var(--second-accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .recommendation-card h4 {
+            color: var(--second-accent);
+            font-size: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            border-bottom: 2px solid var(--second-accent);
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- =================================================
+             Header
+        ================================================= -->
+        <header>
+            <h1>Vallejo Youth Health Initiative</h1>
+            <h2>Youth Participatory Action Research Findings</h2>
+            <p>Understanding the 5 Pressure Systems Affecting Youth Health & Wellbeing</p>
+            <div class="date-box">May 2025</div>
+        </header>
+
+        <!-- =================================================
+             Navigation
+        ================================================= -->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#key-terms">Key Terms</a></li>
+                <li><a href="#pressure-systems">Pressure Systems</a></li>
+                <li><a href="#solutions">Proposed Solutions</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ul>
+        </nav>
+
+        <!-- =================================================
+             Executive Summary
+        ================================================= -->
+        <section id="executive-summary">
+            <h2 class="section-title">Executive Summary</h2>
+            
+            <div class="executive-summary">
+                <h3>Key Findings</h3>
+                <p>The Vallejo Youth Health Initiative YPAR team conducted extensive research to understand the complex challenges affecting youth health in our community. Our research revealed five interconnected "pressure systems" that create self-reinforcing barriers to health and wellbeing. These systems do not operate in isolation but form a network of challenges that compound and intensify each other.</p>
+                
+                <p>Through surveys, interviews, and data analysis, we found that:</p>
+                <ul>
+                    <li>43.7% of children in Vallejo are classified as overweight or obese</li>
+                    <li>73% of Vallejo students qualify for free/reduced meals</li>
+                    <li>42% of youth rate home/school internet as "terrible"</li>
+                    <li>Only 12% of stores in low-income areas are real grocery stores</li>
+                    <li>46% of homeless youth cite transportation as their biggest obstacle</li>
+                </ul>
+                
+                <p>Most importantly, our research shows that these challenges are interconnected. Linear solutions that address only one issue at a time are unlikely to create lasting change. Instead, we need comprehensive approaches that tackle multiple pressure systems simultaneously.</p>
+            </div>
+            
+            <div class="highlight">
+                <h4>Our Vision</h4>
+                <p>A Vallejo where all youth have equitable access to resources, opportunities, and support systems that enable them to thrive physically, mentally, and socially.</p>
+            </div>
+            
+            <div class="callout">
+                <h4>Why This Matters</h4>
+                <p>Understanding these interconnected challenges is essential for developing effective solutions. By mapping these pressure systems, we can identify leverage points where targeted interventions can create ripple effects across multiple areas, maximizing impact with limited resources.</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             Methodology Section
+        ================================================= -->
+        <section id="methodology">
+            <h2 class="section-title">Research Methodology</h2>
+            
+            <div class="methodology">
+                <h3>How We Conducted Our Research</h3>
+                <p>Our Youth Participatory Action Research (YPAR) team employed a mixed-methods approach to gather and analyze data about youth health challenges in Vallejo:</p>
+                
+                <div class="two-column">
+                    <div class="finding-card">
+                        <h4>Data Collection Methods</h4>
+                        <ul>
+                            <li>Surveys of 35+ youth aged 14-24</li>
+                            <li>Reflective journals from MIT-SIP students</li>
+                            <li>Analysis of existing data on food access, internet connectivity, and healthcare</li>
+                            <li>Interviews with youth experiencing homelessness</li>
+                            <li>Environmental assessments of parks and public spaces</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="finding-card">
+                        <h4>Analysis Approach</h4>
+                        <ul>
+                            <li>Systems mapping to identify interconnections</li>
+                            <li>Topic modeling of qualitative responses</li>
+                            <li>Quote extraction to capture youth voice</li>
+                            <li>Geographic information system (GIS) analysis</li>
+                            <li>Youth-led interpretation sessions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p class="mt-4">Our approach centered youth voice and experience throughout the research process. Youth researchers were involved in designing questions, collecting data, analyzing results, and formulating recommendations.</p>
+            </div>
+            
+            <div class="callout">
+                <h4>Youth Voice at the Center</h4>
+                <p>This research was designed, conducted, and analyzed by youth, for youth. We bring perspectives that adults might miss and can reach our peers in ways that adults cannot.</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             Key Terms Section
+        ================================================= -->
+        <section id="key-terms">
+            <h2 class="section-title">Key Terms & Concepts</h2>
+            
+            <div class="key-terms">
+                <h4>Research Framework Concepts</h4>
+                <dl>
+                    <dt>Pressure System</dt>
+                    <dd>A set of related problems that form a self-reinforcing cycle, making each problem harder to solve on its own.</dd>
+                    
+                    <dt>Food Insecurity</dt>
+                    <dd>Limited or uncertain access to enough nutritious food for an active, healthy life.</dd>
+                    
+                    <dt>Food Desert</dt>
+                    <dd>Areas where residents have limited access to affordable, nutritious food due to distance from grocery stores and lack of transportation.</dd>
+                    
+                    <dt>Digital Divide</dt>
+                    <dd>The gap between those who have reliable access to internet and technology and those who don't.</dd>
+                    
+                    <dt>Social Determinants of Health</dt>
+                    <dd>The conditions in which people are born, grow, live, work, and age that affect health and quality of life.</dd>
+                    
+                    <dt>Syndemic</dt>
+                    <dd>When multiple health problems interact and worsen each other's effects, especially in communities facing inequality.</dd>
+                    
+                    <dt>Environmental Justice</dt>
+                    <dd>Fair treatment and meaningful involvement of all people regardless of race, color, national origin, or income with respect to environmental policies.</dd>
+                </dl>
+            </div>
+        </section>
+
+        <!-- =================================================
+             Pressure Systems Section
+        ================================================= -->
+        <section id="pressure-systems">
+            <h2 class="section-title">The 5 Pressure Systems</h2>
+            <p>Our research revealed five interconnected systems that create challenges for Vallejo youth. Understanding these systems helps us develop more effective solutions that address root causes rather than symptoms.</p>
+            
+            <div class="system-card">
+                <h3>1. Hunger → Stress → Risk Cycle</h3>
+                <p><strong>How it works:</strong> Food insecurity creates stress, which can lead to riskier choices (like skipping healthcare or unsafe relationships), which then make hunger worse.</p>
+                
+                <div class="highlight">
+                    <h4>Research Findings</h4>
+                    <ul>
+                        <li>73% of Vallejo students qualify for free/reduced meals</li>
+                        <li>More than half of high school students skip breakfast</li>
+                        <li>About 1 in 6 children in our county lack consistent access to adequate food</li>
+                        <li>3.2 GPA for food-secure students vs. 2.3 GPA for food-insecure students</li>
+                    </ul>
+                </div>
+                
+                <h4 class="subsection-title">Impact on Youth Health & Wellbeing</h4>
+                <div class="two-column">
+                    <div>
+                        <h4>Mental Health Impact</h4>
+                        <ul>
+                            <li>Creates ongoing stress and anxiety</li>
+                            <li>Makes it harder to regulate emotions</li>
+                            <li>Can lead to depression and feeling hopeless</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Academic Performance</h4>
+                        <ul>
+                            <li>Hungry students have lower GPAs</li>
+                            <li>Harder to focus and remember information</li>
+                            <li>More likely to miss school</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="quote">"It could increase the stress level by a lot... good food equals good minds."</div>
+                
+                <p>From student reflections, we found a strong connection between food access and mental health. In the words of one journal entry: "The needs/problems I see in my own neighborhood are definitely obesity or just being overweight in general. I think this might be correlated to income because some foods are just more expensive when they are of high quality like fresh produce."</p>
+            </div>
+            
+            <div class="system-card">
+                <h3>2. Infrastructure Gaps as Social Determinants</h3>
+                <p><strong>How it works:</strong> Poor internet, unsafe parks, and food deserts isolate youth and make it harder to participate in school, social, and health activities.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h4>Digital Problems</h4>
+                        <ul>
+                            <li>42% rate home/school internet as "terrible"</li>
+                            <li>Hard to complete schoolwork or applications</li>
+                            <li>Limited access to online resources and support</li>
+                            <li>"It's very slow" and "Super slow" were common survey responses</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Food Access Issues</h4>
+                        <ul>
+                            <li>Only 12% of stores in low-income areas are real grocery stores</li>
+                            <li>Far more liquor stores (29%) and convenience stores (46%)</li>
+                            <li>88% of liquor stores clustered in low-income neighborhoods</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h4>Environmental Justice Issue</h4>
+                    <p>The lack of healthy food options in communities of color and low-income areas is considered a form of environmental racism. Our research found that this intersects with other infrastructure gaps to create compounding challenges.</p>
+                </div>
+                
+                <p>From our student reflections: "One issue I notice in my neighborhood is the lack of safe recreational spaces for the youth. Many of the parks are not well maintained or properly lit at night which makes them unsafe. Without a safe and well maintained park or recreational area there is no place for youth gathering or sport practices, limiting the ability for the youth to exercise for their long term health."</p>
+            </div>
+            
+            <div class="system-card">
+                <h3>3. Bureaucracy & ID Anxiety Spiral</h3>
+                <p><strong>How it works:</strong> Complicated paperwork (like FAFSA, CalFresh applications, or shelter intake forms) creates anxiety and avoidance, causing people to miss out on resources they need.</p>
+                
+                <h4 class="subsection-title">Common Barriers</h4>
+                <ul>
+                    <li>Social Security number requirements (top FAFSA confusion point)</li>
+                    <li>Complex eligibility rules for assistance programs</li>
+                    <li>ID requirements that are challenging for homeless youth</li>
+                    <li>Privacy concerns, especially for mixed-status families</li>
+                </ul>
+                
+                <div class="quote">"Documentation requirements (e.g., ID, proof of residency)" was the most frequently cited barrier to accessing homeless services in our survey.</div>
+                
+                <p>Our survey on college applications found that many students listed "Aid" as their biggest area of confusion. One respondent noted that "The part it says for your ss" (Social Security number) was the most challenging aspect of the application process. This highlights how bureaucratic requirements can become significant barriers to accessing resources and opportunities.</p>
+            </div>
+            
+            <div class="system-card">
+                <h3>4. Mobility & Geography Trap</h3>
+                <p><strong>How it works:</strong> Limited transportation makes it hard to access food, healthcare, and opportunities, which leads to poorer health and fewer resources to travel.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h4>Transportation Challenges</h4>
+                        <ul>
+                            <li>46% of homeless youth cite transportation as their biggest obstacle</li>
+                            <li>Limited bus routes and long commutes to resources</li>
+                            <li>Difficult to carry groceries on public transit</li>
+                            <li>"Lack of transportation to service locations" was frequently cited in our homeless services survey</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>How Youth Adapt</h4>
+                        <ul>
+                            <li>Visit multiple stores to find affordable food</li>
+                            <li>Give up on planned meals due to lack of ingredients</li>
+                            <li>Skip medical appointments or social activities</li>
+                            <li>Rely on informal transportation networks</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="quote">"Riding the bus, I can only have one batch as I have a purse… there's a walking distance."</div>
+                <div class="quote">"If I have to cook a meal, then go to Food Max for this and the Filipino place for that… sometimes I give up that meal; it's not worth it."</div>
+            </div>
+            
+            <div class="system-card">
+                <h3>5. Safety, Trust & Stigma Loop</h3>
+                <p><strong>How it works:</strong> Fear of danger or judgment keeps youth from using shelters, clinics, and mental health services; problems get worse because they're not addressed, reinforcing fears and stigma.</p>
+                
+                <h4 class="subsection-title">Key Barriers</h4>
+                <ul>
+                    <li>Youth avoid shelters due to safety concerns</li>
+                    <li>Many request "anonymous or confidential" STI resources due to stigma</li>
+                    <li>Mental health help-seeking delayed due to fear of judgment</li>
+                    <li>Unlit parks and unsafe public spaces limit resources and recreation</li>
+                </ul>
+                
+                <p>From our survey on homeless services: "Concerns about personal safety or conflict with other residents" was frequently cited as a reason for avoiding emergency shelters. In reflective journals, students mentioned safety concerns in public spaces: "Dan Foley Park also has experienced multiple crimes being committed at the park from drug use to homicides."</p>
+                
+                <div class="data-viz">
+                    <h4>Survey Results: Factors Influencing Shelter Avoidance</h4>
+                    <ul>
+                        <li>Safety concerns: 37%</li>
+                        <li>Religious or programmatic requirements: 23%</li>
+                        <li>Perceived cleanliness/hygiene: 18%</li>
+                        <li>Restrictions on personal belongings or pets: 14%</li>
+                        <li>Other factors: 8%</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="callout">
+                <h4>Why Understanding These Systems Matters</h4>
+                <p>Single solutions miss how problems connect. For example, better Wi-Fi doesn't just help with homework—it also makes it possible to do telehealth visits, apply for benefits online, and learn about local resources. When we understand these connections, we can create solutions with bigger impact.</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             Solutions Section
+        ================================================= -->
+        <section id="solutions">
+            <h2 class="section-title">Proposed Solutions</h2>
+            <p>Based on our research, we've developed youth-powered ideas that address multiple pressure systems simultaneously. These solutions were designed by youth, for youth, with a focus on practical implementation.</p>
+            
+            <div class="two-column">
+                <div class="recommendation-card">
+                    <h4>Food Access Solutions</h4>
+                    <ul>
+                        <li><strong>Healthy Vallejo Corner Stores</strong> — Create a youth-designed badge program that helps corner stores add affordable fresh options</li>
+                        <li><strong>Pop-Up Produce Labs</strong> — Host weekend stands with fresh food samples, recipe demos, and music</li>
+                        <li><strong>"Food Drop" alerts</strong> — Set up a text system to notify people about free food events, deals, and double-EBT days</li>
+                        <li><strong>Mobile "Fresh Bus"</strong> — Advocate for a bus that brings low-cost produce to neighborhoods with limited food access</li>
+                    </ul>
+                </div>
+                
+                <div class="recommendation-card">
+                    <h4>Safety & Technology Solutions</h4>
+                    <ul>
+                        <li><strong>Park Lighting Campaign</strong> — Assess lighting in parks and create a proposal for safer evening spaces</li>
+                        <li><strong>QR-Code Recipe Trails</strong> — Install signs in parks and at bus stops with QR codes linking to quick, affordable recipes</li>
+                        <li><strong>Smart Kiosks</strong> — Advocate for digital information stations at bus stops showing resource maps and community events</li>
+                        <li><strong>Anonymous Health Resources</strong> — Create a system for confidential access to STI testing and mental health support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="two-column">
+                <div class="recommendation-card">
+                    <h4>School-Based Solutions</h4>
+                    <ul>
+                        <li><strong>Grab-and-Go Snack Bins</strong> — Set up discreet food stations in classrooms and offices</li>
+                        <li><strong>Resource Guides</strong> — Create easy-to-use cards (English/Spanish) linking to local support services</li>
+                        <li><strong>Peer Navigators</strong> — Train students to help classmates with complicated forms like FAFSA applications</li>
+                        <li><strong>Social Media Campaign</strong> — Create TikTok and Instagram content to reduce stigma and share resources</li>
+                    </ul>
+                </div>
+                
+                <div class="recommendation-card">
+                    <h4>Transportation Solutions</h4>
+                    <ul>
+                        <li><strong>Bus Route Mapping</strong> — Create maps showing how to get to key resources using public transportation</li>
+                        <li><strong>Grocery Buddy System</strong> — Organize shopping groups to help carry groceries on public transit</li>
+                        <li><strong>Resource Bundles</strong> — Create "one-stop-shop" events where multiple services are available in one location</li>
+                        <li><strong>Mobile Services</strong> — Advocate for health services, food resources, and WiFi to come to where youth already are</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Cross-Cutting Leverage Solutions</h3>
+            <p>The most powerful solutions are those that address multiple pressure systems at once. These "leverage solutions" create ripple effects across systems:</p>
+            
+            <div class="recommendation-card">
+                <h4>High-Impact Leverage Solutions</h4>
+                <ul>
+                    <li><strong>Bundle services at single touchpoints</strong> — Pop-up events offering food, WiFi hotspots, and help with paperwork address 3-4 pressure systems simultaneously</li>
+                    <li><strong>Build one GIS layer</strong> — Map Wi-Fi speeds, bus stops, clinics, crime hotspots, and grocery stores to identify block-level overlap of challenges</li>
+                    <li><strong>Train "peer bureaucracy navigators"</strong> — Help classmates with FAFSA, CalFresh, and shelter forms to reduce documentation barriers</li>
+                    <li><strong>Combine park-lighting upgrades with evening youth events</strong> — Populate spaces and reduce fear while creating safe recreation options</li>
+                </ul>
+            </div>
+            
+            <div class="callout">
+                <h4>Thinking "Systems-First"</h4>
+                <p>The best solutions tackle multiple pressure systems at once. By addressing interconnected challenges with integrated solutions, we can create more significant and sustainable change with limited resources.</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             Next Steps Section
+        ================================================= -->
+        <!-- <section id="next-steps">
+            <h2 class="section-title">Next Steps & Future Research</h2>
+            
+            <div class="methodology">
+                <h3>Building on Our Findings</h3>
+                <p>To deepen our understanding and develop more targeted solutions, we recommend the following next steps:</p>
+                
+                <ol>
+                    <li><strong>Run a correlation matrix</strong> of survey fields: food stress × Wi-Fi rating × mental-health score to quantify the relationships between these factors</li>
+                    <li><strong>Overlay geo-data</strong> to find census blocks that rate poorly on three or more indicators, helping to target interventions where they're most needed</li>
+                    <li><strong>Hold a youth systems-mapping workshop</strong> to compare causal-loop diagrams with this outline and uncover blind spots</li>
+                    <li><strong>Develop pilot programs</strong> for the most promising solutions identified in this report</li>
+                    <li><strong>Build partnerships</strong> with local organizations, businesses, and government agencies to implement solutions</li>
+                </ol>
+            </div>
+            
+            <div class="highlight">
+                <h4>Key Focus Areas for Future Research</h4>
+                <p>Our findings point to several areas that warrant deeper investigation:</p>
+                <ul>
+                    <li>The relationship between food insecurity and academic performance</li>
+                    <li>The impact of digital divide on healthcare access</li>
+                    <li>The effectiveness of peer navigation models for bureaucratic barriers</li>
+                    <li>Geographic mapping of resource gaps across Vallejo</li>
+                </ul>
+            </div>
+        </section> -->
+
+        <!-- =================================================
+             Footer
+        ================================================= -->
+        <div class="footer">
+            <p>Vallejo Youth Health Initiative</p>
+            <p>Youth Participatory Action Research Findings</p>
+            <p>May 2025</p>
+            <p>Club Stride Inc. | Contact: (707) 204-3160</p>
+        </div>
+    </div>
+</body>
+</html>
